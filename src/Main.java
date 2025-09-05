@@ -5,12 +5,11 @@ public class Main {
         float hunger = 0;
         float fatigue = 0;
         String state = "work";
-        float hours = 0;
 
         boolean alive = true;
 
         while (alive){
-            Message(hunger, fatigue, hours);
+            Message(hunger, fatigue);
             switch(state) {
                 case "sleep":
                     System.out.println("~Dormindo");
@@ -54,7 +53,7 @@ public class Main {
 
 
     }
-    static void Message(float hunger, float fatigue, float hours){
+    static void Message(float hunger, float fatigue){
         System.out.println("fome: " + hunger);
         System.out.println("fadiga: " + fatigue);
         System.out.println("");
