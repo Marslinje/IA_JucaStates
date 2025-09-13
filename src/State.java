@@ -1,4 +1,4 @@
-public interface States {
+public interface State {
     void enter();
     void exit();
 
