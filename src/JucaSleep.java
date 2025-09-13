@@ -6,7 +6,9 @@ public class JucaSleep extends JucaAbstractState {
 
     @Override
     public void enter() {
-        System.out.println(", hora de dormir...");
+        if (juca.getFatigue() < 50)
+            System.out.println(", que sono...");
+        else System.out.println(", hora de dormir...");
     }
 
     @Override

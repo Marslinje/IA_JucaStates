@@ -6,13 +6,17 @@ public class JucaEat extends JucaAbstractState {
 
     @Override
     public void enter(){
-        System.out.println(", mas que fome... ");
+        if (juca.getHunger() < 10)
+            System.out.println(", deixa eu voltar a comer");
+        else if (juca.getHunger() > 10) System.out.println(", to morrendo de fome");
+        else System.out.println(", mas que fome... ");
     }
 
     @Override
     public void update(){
         System.out.println("[Intervalo]");
         juca.setHunger(juca.getHunger() - 5);
+        if (juca.getHunger() < 0) juca.setHunger(0);
         juca.displayInfo();
 
         if (juca.getHunger() <= 0) {

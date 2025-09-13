@@ -22,6 +22,7 @@ public class JucaStateMachine {
     }
 
     public void switchState(State newState){
+        if (!alive) return;
         if (currentState != null) currentState.exit(); //leave current state
         currentState = newState; //assign new state
         if (currentState != null) currentState.enter(); //enter current state
@@ -35,7 +36,7 @@ public class JucaStateMachine {
     }
 
     void checkHeart(){
-        double chance = 0.1; // heart attack chance
+        double chance = 0.01; // heart attack chance
 
         if (Math.random() < chance) {
             switchState(attackState);
