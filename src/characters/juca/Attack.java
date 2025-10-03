@@ -1,7 +1,11 @@
-public class JucaAttack extends JucaAbstractState{
+package characters.juca;
+
+import core.AbstractState;
+
+public class Attack extends AbstractState<Juca> {
     int survivedTimes;
 
-    public JucaAttack(JucaStateMachine juca){
+    public Attack(Juca juca){
         super(juca);
     }
 
@@ -14,25 +18,23 @@ public class JucaAttack extends JucaAbstractState{
     public void update(){
         double chance = 0.05; //death chance
         if (Math.random() < chance) { // 1.0 ~ 0.0 < chance
-            juca.setAlive(false);
-            juca.displayInfo();
+            getCharacter().setAlive(false);
             System.out.println("[Juca teve um ataque cardiaco e morreu]");
             System.out.println("[Juca sobreviveu a " + survivedTimes + " ataque(s) cardiaco(s)]");
             return;
         }
 
         survivedTimes ++;
-        if (juca.getFatigue() >= 50) juca.switchState(juca.sleepState);
-        else if (juca.getHunger() >= 10) juca.switchState(juca.eatState);
-        else juca.switchState(juca.workState);
+        if (getCharacter().getFatigue() >= 50) getCharacter().setState(new Sleep(getCharacter()));
+        else if (getCharacter().getHunger() >= 10) getCharacter().setState(new Eat(getCharacter()));
+        else getCharacter().setState(new Work(getCharacter()));
     }
 
     @Override
     public void exit(){
-        if (juca.isAlive()) {
+        if (getCharacter().isAlive()) {
             System.out.println("[Juca sobreviveu a " + survivedTimes + " ataque(s) cardiaco(s)!]");
             System.out.print("deve ser refluxo");
-            juca.delay(2000);
         }
     }
 }
